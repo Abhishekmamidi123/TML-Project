@@ -1,6 +1,7 @@
 import os
 import cv2
 import numpy as np
+from scipy.spatial import distance
 from sklearn.cluster import KMeans
 
 def find_sift_features(image_path):
@@ -19,6 +20,31 @@ def compute_visual_words_k_means(sift_features, k_clusters):
 	centroids = k_means.cluster_centers_
 	labels = k_means.labels_
 	return centroids
+
+def find_similarity(image_sift_feature, visual_words_centroids):
+	index = 0
+	distances = []
+	for feature in visual_words_centroids:
+		d = distance.euclidean(feature, image_sift_feature)
+		distances.append(d)
+	index = distances.index(min(distances))
+	return index
+
+def visual_words_representation_of_images(All_sift_features, number_of_features_in_each_image, visual_words_centroids, k_clusters):
+	images = []
+	count = 0
+	i = 0
+	image_feature = [0]*k_clusters
+	for image_sift_feature in All_sift_features:
+		index = find_similarity(image_sift_feature, visual_words_centroids)
+		image_feature[index] += 1
+		count+=1
+		if count == number_of_features_in_each_image[i]:
+			images.append(image_feature)
+			image_feature = [0]*k_clusters
+			count = 0
+			i+=1
+	return images
 
 # Directories
 # directories = ['coast', 'forest', 'highway', 'inside_city', 'mountain', 'Opencountry', 'street', 'tallbuilding']
@@ -53,6 +79,7 @@ visual_words_centroids = compute_visual_words_k_means(sift_features, k_clusters)
 print visual_words_centroids.shape
 
 # Representation of images in terms of visual words
-train_images = visual_words_representation_of_images(train_sift_features, number_of_features_in_each_train_image, visual_words_centroids, k_clusters)
-train_labels_path = '../../data/train_labels.csv'
-train_labels = read_labels(train_labels_path)
+images = visual_words_representation_of_images(sift_features, number_of_features_in_each_image, visual_words_centroids, k_clusters)
+print images
+print len(images)
+print np.array(images).shape
