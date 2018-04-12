@@ -1,6 +1,7 @@
 # Binary SVM
 import numpy as np
 from sklearn.svm import SVC
+from sklearn.metrics import classification_report
 
 def svm_classifer(train_images, train_labels):
 	rbf_svc = SVC(kernel='rbf', gamma=0.7, C=1)
