@@ -37,12 +37,13 @@ mu = 0.001
 w = np.zeros((1,16))
 
 errors = []
+sigma = 1
 #for i in range(dividing_point):
 for i in range(dividing_point):
 	e_i = y_train[i] - np.matmul(w,np.reshape(X_train[i], (X_train[i].shape[0],1)))
 	e_i = np.reshape(e_i, ())
 	errors.append(e_i)
-	w = w + mu * int(e_i) * np.reshape(X_train[i], (1, X_train[i].shape[0]))
+	w = w + mu * np.exp((int(e_i)*int(e_i)*-1)/(2.0*sigma*sigma)) * int(e_i) * np.reshape(X_train[i], (1, X_train[i].shape[0]))
 
 y_pred = np.matmul(X_test, np.transpose(w))
 y_pred = np.round(y_pred)
