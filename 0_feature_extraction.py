@@ -47,8 +47,7 @@ def visual_words_representation_of_images(All_sift_features, number_of_features_
 	return images
 
 # Directories
-# directories = ['coast', 'forest', 'highway', 'inside_city', 'mountain', 'Opencountry', 'street', 'tallbuilding']
-directories = ['coast']
+directories = ['coast', 'forest', 'highway', 'inside_city', 'mountain', 'Opencountry', 'street', 'tallbuilding']
 
 # All image names and labels
 image_names = []
