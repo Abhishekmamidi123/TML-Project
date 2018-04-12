@@ -83,3 +83,10 @@ images = visual_words_representation_of_images(sift_features, number_of_features
 print images
 print len(images)
 print np.array(images).shape
+
+# Save
+with open('image_names.txt', 'w') as file:
+	file.write(str(image_names))
+
+with open('bag_of_words_representation_of_images.txt', 'w') as file:
+	file.write(str(images))
