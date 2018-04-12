@@ -80,8 +80,10 @@ print visual_words_centroids.shape
 # Representation of images in terms of visual words
 images = visual_words_representation_of_images(sift_features, number_of_features_in_each_image, visual_words_centroids, k_clusters)
 print images
+print labels
 print len(images)
 print np.array(images).shape
+print np.array(labels).shape
 
 # Save
 with open('image_names.txt', 'w') as file:
@@ -89,3 +91,6 @@ with open('image_names.txt', 'w') as file:
 
 with open('bag_of_words_representation_of_images.txt', 'w') as file:
 	file.write(str(images))
+	
+with open('labels.txt', 'w') as file:
+	file.write(str(labels))
