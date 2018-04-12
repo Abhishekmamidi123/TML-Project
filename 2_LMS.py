@@ -1,5 +1,11 @@
 # LMS
 import numpy as np
+np.set_printoptions(threshold=np.nan)
+from sklearn.metrics import accuracy_score
+
+def display_categorization_accuracy(test_labels, test_prediction):
+	categorization_accuracy = accuracy_score(test_labels, test_prediction)
+	return categorization_accuracy
 
 with open('0_bag_of_words_representation_of_images.txt', 'r') as file:
 	images = np.array(eval(file.readline()))
@@ -12,7 +18,7 @@ with open('0_labels.txt', 'r') as file:
 indices = np.arange(images.shape[0])
 np.random.shuffle(indices)
 images = images[indices]
-labels = labels[indices]
+labels = labels[indices] + 1
 
 # Normalize images
 images = images*1.0
@@ -22,7 +28,6 @@ images = images/maximum
 
 # Divide into train and test sets
 dividing_point = int(images.shape[0]*0.8)
-print dividing_point
 X_train = images[:dividing_point]
 y_train = labels[:dividing_point]
 X_test = images[dividing_point:]
@@ -36,29 +41,11 @@ errors = []
 for i in range(dividing_point):
 	e_i = y_train[i] - np.matmul(w,np.reshape(X_train[i], (X_train[i].shape[0],1)))
 	e_i = np.reshape(e_i, ())
-	print e_i
 	errors.append(e_i)
-	print w
-	print X_train[i]
 	w = w + mu * int(e_i) * np.reshape(X_train[i], (1, X_train[i].shape[0]))
-	
-print w.shape
-print X_test.shape
+
 y_pred = np.matmul(X_test, np.transpose(w))
-print y_pred.shape
-print type(y_pred)
+y_pred = np.round(y_pred)
 
-'''
-function [yd, mse] = lmsFun(u, d, M, N)  
-    mu = 0.001;
-    w = zeros(1,M);
-    for i = 1:N
-        e(i) = d(i) - w * u(:,i);
-        w = w + mu * e(i) * (u(:,i)');
-        mse(i) = abs(e(i))^2;
-    end
-    yd=(w * u);
-    
-end
-'''
-
+Accuracy = display_categorization_accuracy(y_test, y_pred)
+print Accuracy

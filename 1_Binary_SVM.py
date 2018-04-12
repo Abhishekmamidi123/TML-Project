@@ -28,7 +28,13 @@ print labels.shape
 indices = np.arange(images.shape[0])
 np.random.shuffle(indices)
 images = images[indices]
-labels = labels[indices]
+labels = labels[indices] + 1
+
+# Normalize images
+images = images*1.0
+maximum = np.amax(images,1)
+maximum = np.reshape(maximum, (maximum.shape[0], 1))
+images = images/maximum
 
 # Divide into train and test sets
 print images.shape[0]
