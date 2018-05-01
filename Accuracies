@@ -3,4 +3,3 @@ rbf - 17.28
 linear - 52.78
 linear - gamma: 0.1 - C: 1 - 57.80
 kernel='poly', gamma=0.1, C=1 - 47.58
-

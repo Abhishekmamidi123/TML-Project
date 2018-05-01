@@ -22,7 +22,7 @@ with open('0_bag_of_words_representation_of_images.txt', 'r') as file:
 with open('0_labels.txt', 'r') as file:
 	labels = np.array(eval(file.readline()))
 
-# Shuffle images ad labels at a time.
+# Shuffle images and labels at a time.
 indices = np.arange(images.shape[0])
 np.random.shuffle(indices)
 images = images[indices]

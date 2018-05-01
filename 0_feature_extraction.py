@@ -73,7 +73,7 @@ print len(sift_features)
 print number_of_features_in_each_image
 
 # Use K-means to compute visual words # Cluster descriptors
-k_clusters = 16
+k_clusters = 32
 visual_words_centroids = compute_visual_words_k_means(sift_features, k_clusters)
 print visual_words_centroids.shape
 
@@ -86,11 +86,11 @@ print np.array(images).shape
 print np.array(labels).shape
 
 # Save
-with open('image_names.txt', 'w') as file:
-	file.write(str(image_names))
+#with open('image_names.txt', 'w') as file:
+#	file.write(str(image_names))
 
-with open('bag_of_words_representation_of_images.txt', 'w') as file:
+with open('images_32_clusters.txt', 'w') as file:
 	file.write(str(images))
 	
-with open('labels.txt', 'w') as file:
+with open('labels_32_clusters.txt', 'w') as file:
 	file.write(str(labels))

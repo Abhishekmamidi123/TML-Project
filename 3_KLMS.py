@@ -51,7 +51,7 @@ y_pred = np.round(y_pred)
 Accuracy = display_categorization_accuracy(y_test, y_pred)
 print Accuracy
 
-'''
+'''	
 function [y, mse] = kmcFun(u, d, N)
     mu = 0.1;
     sigma = .004;
