@@ -1,4 +1,5 @@
 # LMS
+
 import numpy as np
 np.set_printoptions(threshold=np.nan)
 from sklearn.metrics import accuracy_score
@@ -37,7 +38,6 @@ mu = 0.1
 w = np.zeros((1,16))
 
 errors = []
-#for i in range(dividing_point):
 for i in range(dividing_point):
 	e_i = y_train[i] - np.matmul(w,np.reshape(X_train[i], (X_train[i].shape[0],1)))
 	e_i = np.reshape(e_i, ())

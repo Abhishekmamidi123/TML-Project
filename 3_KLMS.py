@@ -34,35 +34,31 @@ y_train = labels[:dividing_point]
 X_test = images[dividing_point:]
 y_test = labels[dividing_point:]
 
+# Training - Store errors
 mu = 0.001
-w = np.zeros((1,16))
-
+sigma = 2
 errors = []
-#for i in range(dividing_point):
-for i in range(dividing_point):
-	e_i = y_train[i] - np.matmul(w,np.reshape(X_train[i], (X_train[i].shape[0],1)))
-	e_i = np.reshape(e_i, ())
+e_i = y_train[0]
+errors.append(e_i)
+for i in range(1, dividing_point):
+	sum = 0
+	for j in range(i):
+		num = (np.linalg.norm(X_train[j]-X_train[i])**2)*(-1.0)
+		den = sigma * sigma * 1.0
+		sum = sum + (errors[j] * np.exp(num/den))
+	y_i = mu*sum
+	e_i = y_train[i] - y_i
 	errors.append(e_i)
-	w = w + mu * int(e_i) * np.reshape(X_train[i], (1, X_train[i].shape[0]))
 
-y_pred = np.matmul(X_test, np.transpose(w))
-y_pred = np.round(y_pred)
+y_pred = []
+for i in range(len(X_test)):
+	sum = 0
+	for j in range(len(errors)):
+		num = (np.linalg.norm(X_train[j]-X_test[i])**2)*(-1.0)
+		den = sigma * sigma * 1.0
+		sum = sum + (errors[j] * np.exp(num/den))
+	y_i = mu*sum
+	y_pred.append(np.round(y_i))
 
 Accuracy = display_categorization_accuracy(y_test, y_pred)
 print Accuracy
-
-'''	
-function [y, mse] = kmcFun(u, d, N)
-    mu = 0.1;
-    sigma = .004;
-    e = d;
-    y(1) = mu * e(1) * exp(- sigma * e(1) ^2);
-    mse(1) = 1;
-    for n = 2:N
-        ii = 1:(n-1);
-        y(n) = mu * e(ii)* exp(- sigma * sum(e(ii)).^2) * (exp(- sigma * sum((u(:,ii)-u(:,n)).^2)))';
-        e(n) = d(n) - y(n);
-        mse(n) = abs(e(n))^2;
-    end  
-end
-'''
