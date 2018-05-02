@@ -78,8 +78,8 @@ X_test = images[dividing_point:]
 y_test = labels[dividing_point:]
 
 # Training - Store errors
-mu = 0.001
-sigma = 2
+mu = 0.1
+sigma = 2	
 errors = []
 e_i = y_train[0]
 errors.append(e_i)

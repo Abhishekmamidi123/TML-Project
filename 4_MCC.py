@@ -112,8 +112,10 @@ fpr = dict()
 tpr = dict()
 roc_auc = dict()
 for i in range(n_classes):
-    fpr[i], tpr[i], _ = roc_curve(y_test[:, i], y_pred[:, i])
-    roc_auc[i] = auc(fpr[i], tpr[i])
+	fpr[i], tpr[i], _ = roc_curve(y_test[:, i], y_pred[:, i])
+	print fpr[i], tpr[i]
+	if fpr[i][0]!=0 and fpr[i][1]!=0 and tpr[i][0]!=0 and tpr[i][1]!=0:
+		roc_auc[i] = auc(fpr[i], tpr[i])
 
 # First aggregate all false positive rates
 all_fpr = np.unique(np.concatenate([fpr[i] for i in range(n_classes)]))

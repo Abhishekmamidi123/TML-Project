@@ -77,7 +77,7 @@ y_train = labels[:dividing_point]
 X_test = images[dividing_point:]
 y_test = labels[dividing_point:]
 
-mu = 0.1
+mu = 0.001
 w = np.zeros((1,len(X_train[0])))
 
 errors = []

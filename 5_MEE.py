@@ -77,8 +77,8 @@ y_train = labels[:dividing_point]
 X_test = images[dividing_point:]
 y_test = labels[dividing_point:]
 
-mu = 0.01
-sigma = 20
+mu = 0.1
+sigma = 2
 w = np.zeros((1,len(X_train[0])))
 k = 500
 
@@ -95,11 +95,11 @@ for i in range(dividing_point):
 		num += num + k_n * (-2.0) * (1.0/sigma) * (e_i-e_j) * (X_train[i] - X_train[j])
 	#print i, num, den
 	if den!=0:
-		w = w + mu * (num*1.0/den*1.0)
+		w = w - mu * (num*1.0/den*1.0)
 print w
 
 y_pred = np.matmul(X_test, np.transpose(w))
-y_pred = np.round(y_pred) * -1
+y_pred = np.round(y_pred)
 print y_pred
 Accuracy = display_categorization_accuracy(y_test, y_pred)
 print Accuracy
