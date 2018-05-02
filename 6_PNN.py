@@ -85,8 +85,8 @@ y_test = labels[dividing_point:]
 
 model = Sequential()
 model.add(Dense(5, input_shape=(X_train[0].shape[0],)))
-#model.add(Dense(15, activation='relu'))
-#model.add(Dense(15, activation='relu'))
+model.add(Dense(15, activation='relu'))
+model.add(Dense(15, activation='relu'))
 model.add(Dense(8, activation = 'softmax'))
 print model.summary()
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
