@@ -100,8 +100,6 @@ plot_confusion_matrix(cnf_matrix, classes=class_names, title='Confusion matrix, 
 plt.show()
 
 # ROC Curve
-
-# Compute ROC curve and ROC area for each class
 n_classes = 8
 y_pred = np_utils.to_categorical(y_pred)
 y_test = np_utils.to_categorical(y_test)
@@ -129,11 +127,10 @@ fpr["macro"] = all_fpr
 tpr["macro"] = mean_tpr
 roc_auc["macro"] = auc(fpr["macro"], tpr["macro"])
 
-# Plot all ROC curves
 plt.figure()
 
 lw = 2
-colors = cycle(['aqua', 'darkorange', 'cornflowerblue'])
+colors = cycle(['#FF3333','#0198E1','#BF5FFF','#FCD116','#FF7216','#4DBD33','#87421F'])
 for i, color in zip(range(n_classes), colors):
     plt.plot(fpr[i], tpr[i], color=color, lw=lw,
              label='ROC curve of class {0} (area = {1:0.2f})'
@@ -144,31 +141,7 @@ plt.xlim([0.0, 1.0])
 plt.ylim([0.0, 1.05])
 plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
-plt.title('Some extension of Receiver operating characteristic to multi-class')
+plt.title('ROC Curve')
 plt.legend(loc="lower right")
 plt.show()
-
-
-'''
-y_pred = np_utils.to_categorical(y_pred)
-print type(y_pred)	
-print y_test.shape
-print y_pred.shape
-skplt.metrics.plot_roc_curve(y_test, y_pred)
-plt.show()
-'''
-'''
-y_pred = np_utils.to_categorical(y_pred)
-y_test = np_utils.to_categorical(y_test)
-y_pred = y_pred[:,1:][:,0]
-y_test = y_test[:,1:][:,0]
-print y_pred.shape
-fpr, tpr, _ = roc_curve(y_test, y_pred)
-auc = roc_auc_score(y_test, y_pred)
-print y_test
-plt.figure()
-plt.plot(fpr,tpr,label="auc="+str(auc))
-plt.legend(loc=4)
-plt.show()
-'''
 # 60.22
