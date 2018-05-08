@@ -11,4 +11,4 @@
   - [MEE](https://github.com/Abhishekmamidi123/TML_Project/blob/master/5_MEE.py)
   - [PNN](https://github.com/Abhishekmamidi123/TML_Project/blob/master/6_PNN.py)
   
-  - Results of these algorithms on the 8-class image dataset are in the [Results](https://github.com/Abhishekmamidi123/TML_Project/tree/master/Results) folder.
+- Results of these algorithms on the 8-class image dataset are in the [Results](https://github.com/Abhishekmamidi123/TML_Project/tree/master/Results) folder.
