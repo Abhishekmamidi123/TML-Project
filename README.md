@@ -1,7 +1,7 @@
 # Eight class classification
 
 - #### Preprocessing - Bag of Visual words
-![Bag of visual words](https://github.com/Abhishekmamidi123/TML_Project/blob/master/BOW.jpg)\\
+![Bag of visual words](https://github.com/Abhishekmamidi123/TML_Project/blob/master/BOW.jpg)
 
 - This repository contains implementation of different algorithms such as
   - [SVM](https://github.com/Abhishekmamidi123/TML_Project/blob/master/1_Binary_SVM.py)
